@@ -25,9 +25,9 @@ app.get("/scrape", function(req, res){
 
         $("article").each(function(i, element){
 
-            var result = {};
+            let result = {}
 
-            result.img = $(this).find("img").attr("href");
+            result.img = $(this).find("img").attr("src");
             result.title = $(this).find("h3").text();
             result.description = $(this).find("p").text();
             result.link = $(this).find("a").attr("href");  
@@ -49,6 +49,26 @@ app.get("/allArticles", function(req, res){
         res.send(err);
     })
 })
+
+app.post("/allArticles/:id", function(req, res){
+    db.Comment.create(req.body).then(function(dbComment){
+        return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
+    }).then(function(dbArticle){
+        res.json(dbArticle)
+    })
+    .catch(function(err){
+        res.send(err);
+    })
+})
+
+app.get("/allComments", function(req, res){
+    db.Comment.find({}).then(function(dbArticle){
+        res.send(dbArticle);
+    }).catch(function(err){
+        res.send(err);
+    })
+})
+
 
 
 app.listen(PORT, function() {

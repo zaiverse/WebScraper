@@ -23,6 +23,7 @@
     "express-handlebars": "^3.0.2",
     "mongoose": "^5.5.2",
     "morgan": "^1.9.1",
+    "nodeman": "^1.1.2",
     "nodemon": "^1.18.11"
   }
 }
