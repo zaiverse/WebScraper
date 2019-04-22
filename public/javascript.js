@@ -1,3 +1,7 @@
+$.getJSON("/scrape", function(data){
+    console.log(data)
+});
+
 $.getJSON("/allArticles", function(data){
     data.forEach(element => {
         $(".placeArticles").append("<a href='https://www.gamespot.com" + element.link +"'><img src='" + element.img + "'/></a><br /><a href='https://www.gamespot.com" + element.link +"'>" + element.title + "</a><br /><p class = 'description' data-id = " + element._id + ">" + element.description + "</p><br />");
