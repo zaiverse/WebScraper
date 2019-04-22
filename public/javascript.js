@@ -4,6 +4,12 @@ $.getJSON("/allArticles", function(data){
     });
 });
 
+$.getJSON("/allComments", function(data){
+    data.forEach(element => {
+        $(".comments").append("<div><p>Title:" + element.title + "</p><br /><p>Comment:" + element.body);
+    });
+});
+
 $(document).on("click", ".description",function(){
     $("#myModal").modal("show");
     let desId = $(this).attr("data-id");

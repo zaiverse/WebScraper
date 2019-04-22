@@ -2,11 +2,14 @@ var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
+const CONNECTION_URI = process.env.MONGOD_URI || "mongodb://localhost/scraperDB";
+mongoose.connect(CONNECTION_URI);
+
 var axios = require("axios");
 var cheerio = require("cheerio");
 
 var db = require("./models")
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 
@@ -14,8 +17,6 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-
-mongoose.connect("mongodb://localhost/scraperDB", { useNewUrlParser: true });
 
 app.get("/scrape", function(req, res){
 
