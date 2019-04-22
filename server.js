@@ -2,7 +2,7 @@ var express = require("express");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
-const CONNECTION_URI = process.env.MONGOD_URI || "mongodb://localhost/scraperDB27";
+const CONNECTION_URI = process.env.MONGOD_URI || "mongodb://localhost/scraperDB";
 mongoose.connect(CONNECTION_URI);
 
 var axios = require("axios");
